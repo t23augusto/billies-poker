@@ -511,6 +511,24 @@ body {
   font-family: 'Barlow Condensed', sans-serif;
   letter-spacing: 1px;
 }
+
+.sugerencia {
+  background: var(--verde-medio);
+  border: 1px solid var(--verde-borde);
+  border-radius: 20px;
+  color: var(--gris);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.sugerencia:active {
+  border-color: var(--dorado);
+  color: var(--dorado);
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -532,6 +550,7 @@ body {
     <button class="nav-btn" onclick="showScreen('jugadores')">Jugadores</button>
     <button class="nav-btn" onclick="showScreen('records')">Récords</button>
     <button class="nav-btn" onclick="showScreen('historial')">Historial</button>
+    <button class="nav-btn" onclick="showScreen('consulta')">Consultar</button>
   </nav>
 </header>
 
@@ -693,7 +712,7 @@ body {
       <span class="cam-rank rn">4°</span>
       <div style="flex:1">
         <div class="cam-name">Faby<span class="badge badge-red">9 sub.</span><span class="empate-tag">★Oct22</span></div>
-        <span class="cam-sub">9,8% · 1 título compartido</span>
+        <span class="cam-sub">9,8% · 1 título compartido ★Oct 2022</span>
       </div>
       <div class="cam-bar">
         <span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gris)">6</span>
@@ -790,7 +809,7 @@ body {
 
     <div class="jugador-card" data-name="augusto">
       <div class="jc-header">
-        <div><span class="jc-name">Augusto</span><span class="badge badge-gold">+KO avg</span></div>
+        <div><span class="jc-name">Augusto</span><span class="badge badge-gold">+KO avg</span><span class="badge badge-gold">★Oct22</span></div>
         <span class="jc-titles">8</span>
       </div>
       <div class="jc-stats">
@@ -804,7 +823,7 @@ body {
 
     <div class="jugador-card" data-name="faby">
       <div class="jc-header">
-        <div><span class="jc-name">Faby</span><span class="badge badge-red">9 sub. mes</span></div>
+        <div><span class="jc-name">Faby</span><span class="badge badge-red">9 sub. mes</span><span class="badge badge-gold">★Oct22</span></div>
         <span class="jc-titles">6</span>
       </div>
       <div class="jc-stats">
@@ -925,6 +944,20 @@ body {
         <div class="jc-stat"><div class="jc-stat-val">337</div><div class="jc-stat-lbl">KOs</div></div>
       </div>
       <div style="font-size:10px;color:var(--gris);margin-top:6px;font-family:'Barlow Condensed',sans-serif;">Ene 2023: 99,1% del máximo sin ganar — 113 pts vs 114 de Willy</div>
+    </div>
+
+    <div class="jugador-card" data-name="garqui">
+      <div class="jc-header">
+        <div><span class="jc-name">Garqui</span><span class="badge badge-gold">★Nov20</span></div>
+        <span class="jc-titles" style="font-size:22px">1★</span>
+      </div>
+      <div class="jc-stats">
+        <div class="jc-stat"><div class="jc-stat-val">16</div><div class="jc-stat-lbl">Partidas</div></div>
+        <div class="jc-stat"><div class="jc-stat-val">—</div><div class="jc-stat-lbl">Victorias</div></div>
+        <div class="jc-stat"><div class="jc-stat-val">—</div><div class="jc-stat-lbl">Noches</div></div>
+        <div class="jc-stat"><div class="jc-stat-val">—</div><div class="jc-stat-lbl">KOs</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--gris);margin-top:6px;font-family:'Barlow Condensed',sans-serif;">1 mes jugado (Nov 2020) · título compartido con Luis · 100% de conversión</div>
     </div>
 
   </div>
@@ -1141,6 +1174,66 @@ body {
   </div>
 </div>
 
+
+<!-- ── CONSULTA INTELIGENTE ── -->
+<div id="screen-consulta" class="screen">
+  <div style="margin-top:14px">
+    <div class="section-title">Consultá el historial</div>
+    <p style="font-size:13px;color:var(--gris);margin-bottom:16px;line-height:1.5">
+      Hacé cualquier pregunta sobre el torneo en lenguaje natural.
+    </p>
+
+    <div style="position:relative;margin-bottom:12px">
+      <textarea id="consultaInput"
+        placeholder="Ej: ¿Quién salió más veces 5to? ¿Cuál fue el mes más ajustado? ¿Quién tiene más KOs?"
+        style="width:100%;background:var(--verde-medio);border:1px solid var(--verde-borde);border-radius:10px;
+               padding:12px 14px;color:var(--blanco);font-family:'Barlow',sans-serif;font-size:14px;
+               resize:none;height:90px;outline:none;line-height:1.5"
+        oninput="this.style.borderColor='var(--dorado-oscuro)'"
+        onblur="this.style.borderColor='var(--verde-borde)'"
+      ></textarea>
+    </div>
+
+    <button onclick="consultarStats()"
+      style="width:100%;background:linear-gradient(135deg,#1a3d1a,#2d6a2d);border:1px solid var(--verde-acento);
+             border-radius:8px;color:var(--dorado);font-family:'Barlow Condensed',sans-serif;font-size:15px;
+             font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px;cursor:pointer;
+             transition:all 0.2s">
+      ♠ CONSULTAR ♠
+    </button>
+
+    <!-- Sugerencias rápidas -->
+    <div style="margin-top:16px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;
+                  color:var(--gris);text-transform:uppercase;margin-bottom:8px">Preguntas frecuentes</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button class="sugerencia" onclick="usarSugerencia('¿Quién salió más veces 5to en las partidas?')">5° puesto histórico</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Cuál fue el mes más ajustado de la historia?')">Mes más ajustado</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Quién tiene más KOs totales?')">Más KOs</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Cuántas noches perfectas hubo?')">Noches perfectas</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Quién ganó más noches?')">Ganador de noches</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Qué jugador tiene mejor promedio por torneo?')">Mejor promedio</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Quién fue subcampeón más veces?')">Más subcampeonatos</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Cuál fue la noche con más puntos sin escalera real?')">Mejor noche pura</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Quién tiene más escaleras reales?')">Escaleras reales</button>
+        <button class="sugerencia" onclick="usarSugerencia('¿Cómo va el mes de mayo 2026?')">Mayo 2026</button>
+      </div>
+    </div>
+
+    <!-- Respuesta -->
+    <div id="consultaRespuesta" style="display:none;margin-top:16px">
+      <div class="card gold" id="respuestaCard">
+        <div class="section-title">Respuesta</div>
+        <div id="respuestaTexto" style="font-size:14px;color:var(--blanco);line-height:1.7"></div>
+      </div>
+    </div>
+
+    <div id="consultaCargando" style="display:none;text-align:center;padding:30px">
+      <div style="font-size:30px;animation:spin 1s linear infinite;display:inline-block">♠</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;color:var(--gris);letter-spacing:2px;margin-top:8px;font-size:12px">CONSULTANDO...</div>
+    </div>
+  </div>
+</div>
 </main>
 
 <nav class="bottom-nav">
@@ -1163,6 +1256,10 @@ body {
   <button class="bn-btn" onclick="showScreen('historial')">
     <span class="bn-icon">📅</span>
     <span class="bn-label">Historial</span>
+  </button>
+  <button class="bn-btn" onclick="showScreen('consulta')">
+    <span class="bn-icon">🔍</span>
+    <span class="bn-label">Consultar</span>
   </button>
 </nav>
 
@@ -1201,7 +1298,230 @@ window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   window._deferredPrompt = e;
 });
-  // Service Worker
+  
+// ── BASE DE DATOS DEL TORNEO ──
+const TORNEO_DATOS = `
+TORNEO: Billie's Holdem Poker - Sportivo Billinghurst - Est. 2020
+PERÍODO: noviembre 2020 → mayo 2026 (64 meses completos + mayo en curso)
+PARTIDAS TOTALES: 778 históricas + mayo en curso
+
+SISTEMA DE PUNTOS:
+- 3 partidas por viernes: 23hs, 23:45hs y 1am
+- Cuentan los 2 MEJORES puestos de la noche + TODOS los KOs
+- Puestos: 1°=19, 2°=15, 3°=12, 4°=9, 5°=7, 6°=5, 7°=4, 8°=3, 9°=2, 10°=1
+- Cada KO vale 0,5 pts. Escalera real = bonus 5pts (NO es KO)
+- Noche perfecta = ganar los 3 torneos
+
+RANKING DE CAMPEONES (títulos mensuales):
+1. Willy: 19 títulos (29,7%) - 64 meses - mejor histórico
+2. Quique: 17 títulos (26,6%) - 64 meses - 13 subcampeonatos mensuales - 8 escaleras reales
+3. Augusto: 8 títulos (13,1%) - 61 meses - 1 compartido (Oct 2022 con Faby)
+4. Faby: 6 títulos (9,8%) - 61 meses - 1 compartido (Oct 2022 con Augusto) - 9 subcampeonatos
+5. Juanchi: 3 títulos (13,6%) - 22 meses - mejor % victorias individuales (17,8%)
+6. Ale: 3 títulos - 64 meses
+7. Riby: 3 títulos - 60 meses
+8. Fer: 3 títulos - 64 meses - 8 subcampeonatos mensuales
+9. Gonza: 2 títulos - 32 meses
+- Luis: 1 título compartido (Nov 2020 con Garqui) - 62 meses - 0 títulos propios
+- Garqui: 1 título compartido (Nov 2020 con Luis) - solo jugó 1 mes
+- Santi: 0 títulos - 24 meses
+- Charly: 0 títulos - 50 meses
+
+EMPATES HISTÓRICOS (cuentan como 1 título cada uno ★):
+- Nov 2020: Garqui y Luis empataron en 98 pts (primer mes del torneo)
+- Oct 2022: Augusto y Faby empataron en 120,5 pts (sin resolución oficial)
+
+PARTIDAS INDIVIDUALES GANADAS:
+- Quique: 115 victorias (15,2%) - 757 partidas
+- Willy: 115 victorias (15,2%) - 759 partidas  
+- Augusto: 101 victorias (15,1%) - 671 partidas
+- Faby: 84 victorias (13,7%) - 614 partidas
+- Juanchi: 37 victorias (17,8%) - MEJOR PORCENTAJE HISTÓRICO - 208 partidas
+- Ale: 75 victorias (10%) - 747 partidas
+- Fer: 67 victorias (9,4%) - 714 partidas
+- Luis: 58 victorias (9%) - 644 partidas
+- Riby: 38 victorias (5,5%) - 693 partidas - MÁS 3° PUESTOS (108)
+- Gonza: 26 victorias (10,4%) - 250 partidas
+- Charly: 38 victorias (8,2%) - 462 partidas
+- Santi: 19 victorias (7,5%) - 254 partidas
+
+NOCHES GANADAS:
+1. Quique: 45 noches (17,9%) de 251 - también 45 veces 2° (ratio 1:1 exacto)
+2. Augusto: 40 noches (17,6%) de 227
+3. Willy: 39 noches (15,7%) de 249
+4. Faby: 28 noches (11,8%)
+5. Fer: 20 noches (8,4%)
+6. Ale: 19 noches (7,6%)
+7. Luis: 15 noches (6,7%)
+8. Riby: 12 noches (5,2%)
+9. Juanchi: 11 noches (15,3%)
+
+KOs TOTALES (reales, sin escalera real):
+1. Quique: 787 KOs - avg 1,04/partida
+2. Augusto: 765 KOs - avg 1,14/partida (MEJOR PROMEDIO)
+3. Willy: 730 KOs - avg 0,96/partida
+4. Faby: 599 KOs - avg 0,98/partida
+5. Ale: 586 KOs
+6. Luis: 537 KOs
+7. Fer: 485 KOs
+8. Riby: 398 KOs
+9. Charly: 337 KOs
+10. Juanchi: 245 KOs - avg 1,18/partida (2° mejor promedio)
+
+ESCALERAS REALES (44 históricas):
+1. Quique: 8 (el doble que cualquier otro)
+2. Gonza: 5
+3. Willy, Faby, Augusto: 4 cada uno
+4. Luis: 3
+5. Riby, Fer, Charly: 2 cada uno
+6. Santi, Juanchi, Ale, Rodri: 1 cada uno
+
+NOCHES PERFECTAS (3/3 torneos, solo 4 en 64 meses):
+1. Riby - Feb 2021 F1 - 34 pts - Ganó el mes ✓
+2. Faby - Mar 2025 F1 - 43 pts - Ganó el mes ✓
+3. Augusto - Abr 2025 F3 - 40,5 pts - NO ganó el mes (Quique ganó igual)
+4. Ale - Dic 2025 F3 - 40 pts - Ganó el mes ✓
+
+5° PUESTOS EN PARTIDAS INDIVIDUALES:
+1. Fer: 98 veces (13,6%)
+2. Willy: 92 veces (12%)
+3. Riby: 92 veces (13,3%)
+4. Ale: 86 veces (11,4%)
+5. Faby: 70 veces (11,3%)
+6. Luis: 69 veces (10,7%)
+7. Augusto: 67 veces (9,9%)
+8. Quique: 63 veces (8,3%) - MENOS % del top
+9. Santi: 38 veces (14,6%) - MAYOR %
+
+5° PUESTOS EN RANKING DE NOCHE:
+1. Riby: 33 veces (14,2%)
+2. Willy: 32 veces (12,7%)
+3. Faby: 29 veces (12,1%)
+4. Santi: 14 veces (16,5%) - MAYOR %
+
+5° PUESTOS EN RANKING MENSUAL:
+1. Ale: 10 veces (15,6%)
+2. Riby: 10 veces (16,7%)
+3. Augusto: 8 veces
+4. Luis: 8 veces
+5. Quique: 8 veces
+- Willy: solo 2 veces (3,1%) - MENOS % del grupo
+
+4° PUESTOS EN PARTIDAS:
+1. Ale: 104 veces (13,9%) - RÉCORD HISTÓRICO
+2. Willy: 99 veces (13%)
+3. Riby: 95 veces (13,7%)
+
+3° PUESTOS EN PARTIDAS:
+1. Riby: 108 veces (15,6%) - REY DEL BRONCE
+2. Willy: 107 veces (14,1%)
+
+MEJORES NOCHES (sin escalera real):
+1. Juanchi: 45,5 pts (Oct 2024, 15 KOs)
+2. Juanchi: 44,5 pts (Nov 2025, 13 KOs)
+3. Augusto: 44 pts (Abr 2024, 12 KOs)
+4. Ale: 43,5 pts (Mar 2026, 11 KOs)
+4. Quique: 43,5 pts (Jun 2022, 11 KOs)
+
+MEJORES NOCHES (con escalera real):
+1. Faby: 47,5 pts (Ene 2022, base 42,5 + 5 escalera)
+1. Gonza: 47,5 pts (Jun 2021, base 42,5 + 5 escalera)
+
+CAMPEONATOS MÁS AJUSTADOS:
+1. Oct 2022: Augusto/Faby 120,5 pts EMPATE
+2. Nov 2020: Garqui/Luis 98 pts EMPATE
+3. Jul 2022: Willy 125,25 vs Quique 124,75 (0,5 pts)
+4. Mar 2023: Faby 112,5 vs Fer 111,5 (1 pt)
+5. Ene 2023: Willy 114 vs Charly 113 (1 pt)
+6. Abr 2026: Quique 130 vs Fer 128 (2 pts)
+
+CAMPEONATOS MÁS DOMINANTES:
+1. Oct 2025: Augusto +63,25 pts
+2. Ago 2022: Faby +51,25 pts
+3. Feb 2026: Augusto +43,5 pts
+4. Feb 2022: Augusto +34 pts
+
+PROMEDIOS NORMALIZADOS (pts por torneo):
+1. Willy: 8,31 pts/torneo
+2. Quique: 8,31 pts/torneo (EMPATE EXACTO con Willy)
+3. Augusto: 7,04
+4. Ale: 6,86
+5. Fer: 6,63
+6. Riby: 6,61
+
+EFICIENCIA MENSUAL (% del campeón de ese mes):
+1. Willy: 82,5% promedio (peor mes: 13,1%)
+2. Quique: 82,2% (peor mes: 41,2% - SUELO MÁS ALTO del grupo)
+3. Augusto: 69,3%
+
+MAYO 2026 (en curso, 2 de 3 fechas):
+Ganador F1 (01/05): Juanchi 43 pts
+Ganador F2 (08/05): Quique 40,5 pts
+Tabla actual: Ale 60,25 · Quique 60 · Juanchi 53 · Fer 51,5 · Augusto 48,25 · Willy 43,5 · Santi 34,5 · Faby 27,5
+
+CURIOSIDADES:
+- Willy y Quique tienen exactamente el mismo promedio normalizado (8,31)
+- Quique tiene 45 noches ganadas y 45 veces 2° (ratio 1:1 exacto)
+- Quique nunca bajó del 41,2% del máximo mensual (suelo más alto del grupo)
+- Augusto hizo noche perfecta en Abr 2025 y no ganó el mes
+- Luis ganó el primer mes (Nov 2020, compartido) y lleva 62 meses sin repetirlo
+- Charly en Ene 2023: 99,1% del máximo sin ganar (113 pts vs 114 de Willy)
+- Juanchi proyecta top 3 histórico si jugara todos los meses
+- 3 de los 5 campeonatos más dominantes son de Augusto
+`;
+
+function usarSugerencia(texto) {
+  document.getElementById('consultaInput').value = texto;
+  consultarStats();
+}
+
+async function consultarStats() {
+  const pregunta = document.getElementById('consultaInput').value.trim();
+  if (!pregunta) return;
+
+  document.getElementById('consultaRespuesta').style.display = 'none';
+  document.getElementById('consultaCargando').style.display = 'block';
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        system: `Sos el asistente oficial del torneo de poker "Billie's Holdem Poker" del Sportivo Billinghurst, Argentina. Respondés preguntas sobre estadísticas e historial del torneo usando ÚNICAMENTE los datos que te proveen. Respondés en español argentino, de forma concisa y clara. Usás emojis ocasionalmente. Si la pregunta no tiene que ver con el torneo, lo decís amablemente. Datos del torneo:\n\n${TORNEO_DATOS}`,
+        messages: [{ role: "user", content: pregunta }]
+      })
+    });
+
+    const data = await response.json();
+    const texto = data.content?.[0]?.text || "No pude procesar la consulta.";
+
+    document.getElementById('consultaCargando').style.display = 'none';
+    document.getElementById('respuestaTexto').innerHTML = texto.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    document.getElementById('consultaRespuesta').style.display = 'block';
+
+  } catch (err) {
+    document.getElementById('consultaCargando').style.display = 'none';
+    document.getElementById('respuestaTexto').innerHTML = 'Error al consultar. Verificá tu conexión.';
+    document.getElementById('consultaRespuesta').style.display = 'block';
+  }
+}
+
+// Enter para consultar
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('consultaInput');
+  if (input) {
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        consultarStats();
+      }
+    });
+  }
+});
+
+// Service Worker
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js");
   }
