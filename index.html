@@ -233,6 +233,8 @@ body{font-family:'Montserrat',system-ui,sans-serif}
 .fmgo{flex:1;margin-top:0}
 .fmcerrar{flex:1;background:transparent;color:var(--bl);border:1px solid var(--va);border-radius:10px;padding:11px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;cursor:pointer;transition:background .2s,transform .15s}
 .fmcerrar:hover{background:rgba(45,106,45,.25);transform:translateY(-1px)}
+
+.sc{padding-bottom:28px}
 </style>
 </head>
 <body>
@@ -304,13 +306,7 @@ body{font-family:'Montserrat',system-ui,sans-serif}
   </div>
 </div>
 
-<nav class="bnav">
-  <button class="bn active" onclick="show('inicio')"><span class="bni">🏠</span><span class="bnl">Inicio</span></button>
-  <button class="bn" onclick="show('jugadores')"><span class="bni">👤</span><span class="bnl">Jugadores</span></button>
-  <button class="bn" onclick="show('historial')"><span class="bni">📅</span><span class="bnl">Historial</span></button>
-  <button class="bn" onclick="show('records')"><span class="bni">⭐</span><span class="bnl">Récords</span></button>
-  <button class="bn" onclick="show('consultar')"><span class="bni">🔍</span><span class="bnl">Consultar</span></button>
-</nav>
+
 
 <div id="ficha-modal" class="fmodal" onclick="closeFicha()">
   <div class="fmbox" onclick="event.stopPropagation()">
