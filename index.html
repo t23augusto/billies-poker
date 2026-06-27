@@ -294,7 +294,7 @@ body{font-family:'Montserrat',system-ui,sans-serif}
     <div class="sbox"><div class="slbl">Último campeón</div><div class="sval" style="font-size:16px">Ale</div><div class="ssub">May 2026 · 130,25 pts</div></div>
     <div class="sbox"><div class="slbl">Líder histórico</div><div class="sval" style="font-size:16px">Willy</div><div class="ssub">19 títulos en 64 meses</div></div>
     <div class="sbox"><div class="slbl">Meses jugados</div><div class="sval">65</div><div class="ssub">Nov 2020 → May 2026</div></div>
-    <div class="sbox"><div class="slbl">Partidas totales</div><div class="sval">790+</div><div class="ssub">+ Junio en curso</div></div>
+    <div class="sbox"><div class="slbl">Partidas totales</div><div class="sval">808</div><div class="ssub">Nov 2020 → Jun 2026</div></div>
   </div>
   <div class="card">
     <div class="stitle">Ranking de campeones</div>
@@ -499,7 +499,7 @@ const JUGADORES_INFO = {
   'Willy': {nick:'GioCas3010', badge:'Campeón histórico', badge_type:'g', nota:'19 títulos en 64 meses. Gana por posición — solo 0,96 KOs/partida. Mismo promedio que Quique: 8,31 pts/torneo.'},
   'Quique': {nick:'Tigre1958205', badge:'13 sub. mensuales', badge_type:'r', nota:'8 escaleras reales (récord absoluto). 45 noches ganadas = 45 veces 2° en noches (ratio 1:1 perfecto). Nunca bajó del 41% del máximo mensual.'},
   'Augusto': {nick:'t23Augusto', badge:'+KO avg', badge_type:'g', nota:'3 de los 5 campeonatos más dominantes son suyos. 1 título compartido con Faby (Oct 2022). 1,14 KOs/partida — mejor promedio del torneo.'},
-  'Faby': {nick:'AprenderFutbol', badge:'9 sub. mensuales', badge_type:'r', nota:'1 título compartido con Augusto (Oct 2022). La noche perfecta de Mar 2025 (43 pts). 9 subcampeonatos — la más dolorosa del torneo.'},
+  'Faby': {nick:'AprenderFutbol', badge:'8 sub. mensuales', badge_type:'r', nota:'1 título compartido con Augusto (Oct 2022). La noche perfecta de Mar 2025 (43 pts). 8 subcampeonatos mensuales.'},
   'Juanchi': {nick:'JuanPaterno', badge:'17,8% victorias', badge_type:'gr', nota:'Mejor % de victorias individuales de la historia. Sus 2 mejores noches son top 4 histórico. Proyecta top 3 si jugara todos los meses.'},
   'Ale': {nick:'AlejandroDiaz99', badge:'Líder May 2026', badge_type:'g', nota:'Récord histórico de 4° puestos individuales: 104 veces. Noche perfecta en Dic 2025. Lidera mayo 2026.'},
   'Riby': {nick:'Riby', badge:'Rey del bronce', badge_type:'r', nota:'108 terceros puestos individuales — el más alto de la historia. Rey del 5° puesto en noches (33 veces).'},
@@ -680,30 +680,30 @@ function filtrarHist() {
 // ══ RÉCORDS ══
 function renderRecords() {
   const recs = [
-    {icon:'🏆',lbl:'Más títulos mensuales',val:'Willy — 19 títulos',det:'en 64 meses · 29,7% de conversión · mejor eficiencia global 82,5%'},
+    {icon:'🏆',lbl:'Más títulos mensuales',val:'Willy — 19 títulos',det:'en 66 meses · 28,8% de conversión · mejor eficiencia global 82,5%'},
     {icon:'📈',lbl:'Mayor puntaje mensual',val:'Quique — 161,25 pts',det:'Julio 2021 · el mes más alto de toda la historia'},
     {icon:'⚡',lbl:'Mayor dominancia mensual',val:'Augusto — +63,25 pts',det:'Oct 2025 · 153 pts totales · Santi fue 2° con 89,75'},
     {icon:'🌙',lbl:'Mejor noche (sin escalera real)',val:'Juanchi — 45,5 pts',det:'Oct 2024 · 15 KOs · base pura sin bonus de escalera'},
     {icon:'🃏',lbl:'Mejor noche (con escalera real)',val:'Faby / Gonza — 47,5 pts',det:'Ene 2022 / Jun 2021 · base real 42,5 + 5 pts escalera cada uno'},
     {icon:'💀',lbl:'Más KOs en una sola partida (Flawless)',val:'Ale / Augusto — 9 KOs c/u',det:'Ale 13/03/2026 · Augusto 11/06/2022 · Faby 3° con 7 KOs (21/03/2026) · eliminaron a TODOS los rivales y ganaron'},
     {icon:'💀',lbl:'Más KOs en una noche (era moderna)',val:'Juanchi — 15 KOs',det:'Oct 2024 · misma noche de los 45,5 pts · 2°: Juanchi 13 (Nov 2025)'},
-    {icon:'💀',lbl:'Más KOs totales',val:'Quique — 787 KOs',det:'avg 1,04/partida · Augusto 2° con 765 pero mejor avg (1,14)'},
-    {icon:'💀',lbl:'Mejor avg KOs/partida',val:'Augusto — 1,14 KOs/p',det:'Juanchi 2° con 1,18/p (en menos partidas) · Willy el más bajo del top: 0,96'},
+    {icon:'💀',lbl:'Más KOs totales',val:'Quique — 771 KOs',det:'avg 1,03/partida · Augusto 2° con 757 · Willy 3° con 723,5'},
+    {icon:'💀',lbl:'Mejor avg KOs/partida',val:'Juanchi — 1,17 KOs/p',det:'Augusto 2° con 1,13/p · Quique 1,03 · Willy 0,96'},
     {icon:'♦️',lbl:'Más escaleras reales',val:'Quique — 9',det:'el doble que cualquier otro · 44 escaleras reales en toda la historia'},
     {icon:'⭐',lbl:'Noches perfectas (3/3 torneos)',val:'4 en 65 meses',det:'Riby Feb21 · Faby Mar25 · Augusto Abr25 (no ganó el mes) · Ale Dic25'},
-    {icon:'🌙',lbl:'Más noches ganadas',val:'Quique — 45 noches',det:'17,9% · Augusto 2° con 40 · Willy 3° con 39'},
-    {icon:'🏅',lbl:'Más victorias individuales',val:'Quique / Willy — 115 c/u',det:'15,2% cada uno · Augusto 3° con 101'},
-    {icon:'🎯',lbl:'Mejor % victorias individuales',val:'Juanchi — 17,8%',det:'37 victorias en 208 partidas · el más eficiente por lejos'},
+    {icon:'🌙',lbl:'Más noches ganadas',val:'Quique — 48 noches',det:'Willy y Augusto 2° con 41 c/u · Faby 28'},
+    {icon:'🏅',lbl:'Más victorias individuales',val:'Willy / Quique — 113 c/u',det:'15,0% cada uno · Augusto 3° con 99'},
+    {icon:'🎯',lbl:'Mejor % victorias individuales',val:'Juanchi — 17,5%',det:'36 victorias en 206 partidas · el más eficiente por lejos'},
     {icon:'📊',lbl:'Mejor promedio normalizado',val:'Willy / Quique — 8,31 pts/torneo',det:'EMPATE EXACTO en 65+ meses · Augusto 3° con 7,04'},
     {icon:'📊',lbl:'Mejor eficiencia mensual',val:'Willy — 82,5% del máximo',det:'Quique 82,2% · Augusto 69,3% · Quique nunca bajó del 41,2%'},
     {icon:'🔥',lbl:'Mes más ajustado',val:'Oct 2022 / Nov 2020 — EMPATE',det:'Augusto/Faby 120,5 pts c/u · Garqui/Luis 98 pts c/u · Jul22: Willy vs Quique 0,5 pts'},
-    {icon:'😤',lbl:'Más subcampeonatos mensuales',val:'Faby — 9 veces 2°',det:'con solo 6 títulos · Quique 13 · Fer 8 · Augusto 8'},
+    {icon:'😤',lbl:'Más subcampeonatos mensuales',val:'Quique — 13 veces 2°',det:'el rey del subcampeonato · Willy 10 · Faby 8 · Augusto 8'},
     {icon:'😢',lbl:'Subcampeonato más injusto',val:'Charly — Ene 2023 (99,1%)',det:'113 pts cuando Willy hizo 114 · 1 punto lo separó del único título de su historia'},
-    {icon:'4️⃣',lbl:'Más 4° puestos individuales',val:'Ale — 104 veces (13,9%)',det:'RÉCORD HISTÓRICO · Willy 2° con 99 · Riby 3° con 95'},
-    {icon:'5️⃣',lbl:'Más 5° puestos individuales',val:'Fer — 98 veces (13,6%)',det:'Willy 2° con 92 · Riby 3° con 92 · Mayor %: Santi 14,6%'},
-    {icon:'🥉',lbl:'Más 3° puestos individuales',val:'Riby — 108 veces (15,6%)',det:'REY DEL BRONCE · Willy 2° con 107 · Ale 3° con 90'},
+    {icon:'4️⃣',lbl:'Más 4° puestos individuales',val:'Ale — 106 veces (14,2%)',det:'RÉCORD HISTÓRICO · Willy 2° con 97 · Riby 3° con 95'},
+    {icon:'5️⃣',lbl:'Más 5° puestos individuales',val:'Fer — 98 veces (13,9%)',det:'Riby 2° con 92 · Willy 3° con 91 · Mayor %: Santi 14,6%'},
+    {icon:'🥉',lbl:'Más 3° puestos individuales',val:'Riby — 108 veces (15,6%)',det:'REY DEL BRONCE · Willy 2° con 107 · Quique 3° con 98'},
     {icon:'⚖️',lbl:'Empates históricos en el mes',val:'Nov 2020 y Oct 2022',det:'Nov20: Garqui/Luis 98pts · Oct22: Augusto/Faby 120,5pts · 1 título c/u ★'},
-    {icon:'🔄',lbl:'Dato surrealista',val:'Quique: 45 noches ganadas = 45 veces 2°',det:'Ratio exactamente 1 a 1 en 65+ meses · 46 noches ganadas y 46 veces 2° en noches'},
+    {icon:'🔄',lbl:'Dato curioso',val:'Quique: 48 noches ganadas y 45 veces 2° de la noche',det:'casi 1 a 1 — gana una noche casi tantas veces como queda 2° en la noche'},
     {icon:'🤝',lbl:'El duelo del siglo',val:'Willy vs Quique: 8,31 pts/torneo c/u',det:'Mismo promedio normalizado exacto en 65+ meses · mismas partidas · mismos meses'},
     {icon:'😤',lbl:'Noche perfecta sin ganar el mes',val:'Augusto — Abr 2025',det:'Ganó los 3 torneos (40,5 pts) y Quique igual se llevó el campeonato'},
     {icon:'📅',lbl:'Primer campeón de la historia',val:'Garqui / Luis — Nov 2020',det:'Empate en 98 pts · primer mes del torneo · 4 torneos por noche'},
@@ -711,7 +711,7 @@ function renderRecords() {
     {icon:'💥',lbl:'Flawless Victory (eliminó a todos en 1 partida)',val:'3 en toda la historia',det:'Ale 9 KOs (13/03/2026) · Faby 7 KOs (21/03/2026) · Augusto 9 KOs (11/06/2022)'},
     {icon:'🎯',lbl:'Garqui — 100% de conversión',val:'Jugó 1 mes y lo ganó',det:'Nov 2020 compartido con Luis · única participación en el torneo'},
     {icon:'🏆',lbl:'Campeonatos más dominantes top 5',val:'Augusto x3 · Faby x1 · Quique x1',det:'Oct25 +63,25 · Ago22 +51,25 · Feb26 +43,5 · Feb22 +34 · Dic24 +32'},
-    {icon:'🎮',lbl:'Partidas totales jugadas',val:'778 partidas',det:'Nov2020→May2026 · 65 meses completos + Junio en curso'},
+    {icon:'🎮',lbl:'Partidas totales jugadas',val:'808 partidas',det:'Nov2020→Jun2026 · 66 meses · 268 fechas de 3 partidas'},
   ];
 
   let html = '';
@@ -789,7 +789,7 @@ const KB = [
   {t:['5to','5°','quinto','quinta'],r:'5️⃣ <b>Más veces 5° en partidas individuales:</b><br>1° Fer 98 (13,6%) · 2° Willy 92 (12%) · 3° Riby 92 (13,3%) · 4° Ale 86 · Mayor %: Santi 14,6%<br><br><b>5° en noche:</b> 1° Riby 33 (14,2%) · 2° Willy 32 · 3° Faby 29 · Mayor %: Santi 16,5%<br><b>5° en mes:</b> 1° Ale y Riby 10 c/u · Menos %: Willy 3,1%'},
   {t:['4to','4°','cuarto'],r:'4️⃣ <b>Más 4° puestos individuales:</b><br>1° Ale — 104 veces (13,9%) RÉCORD HISTÓRICO<br>2° Willy — 99 (13%) · 3° Riby — 95 (13,7%) · 4° Augusto — 71 · 5° Fer — 70'},
   {t:['3ro','3°','tercero','bronce'],r:'🥉 <b>Más 3° puestos individuales:</b><br>1° Riby — 108 veces (15,6%) REY DEL BRONCE<br>2° Willy — 107 (14,1%) · 3° Ale — 90 · 4° Fer — 81<br><br><b>3° en mes:</b> 1° Willy 13 (20,3%) · 2° Ale/Fer/Faby 8 c/u'},
-  {t:['2do','2°','segundo','sub','subcampeon'],r:'🥈 <b>Más subcampeonatos mensuales:</b><br>1° Quique 13 · 2° Faby 9 · 3° Fer 8 · 4° Augusto 8<br><b>Más 2° individuales:</b> Quique 124 · Fer 92<br><b>Subcampeonato injusto:</b> Charly Ene23 — 99,1% sin ganar (113 vs 114 Willy)'},
+  {t:['2do','2°','segundo','sub','subcampeon'],r:'🥈 <b>Más subcampeonatos mensuales:</b><br>1° Quique 13 · 2° Willy 10 · 3° Faby 8 · 4° Augusto 8<br><b>Más 2° individuales:</b> Willy y Quique 121 · Riby 93<br><b>Subcampeonato injusto:</b> Charly Ene23 — 99,1% sin ganar (113 vs 114 Willy)'},
   {t:['ko','kos','kill','elimina','letal','matar'],r:'💀 <b>KOs totales:</b><br>1° Quique 787 (avg 1,04) · 2° Augusto 765 (avg 1,14 — MEJOR) · 3° Willy 730 (avg 0,96)<br>4° Faby 599 · 5° Ale 586 · 6° Luis 537<br><b>Mejor avg:</b> Augusto 1,14 · Juanchi 1,18 (en menos partidas)'},
   {t:['escalera','real','flush'],r:'♦️ <b>Escaleras reales (44 totales):</b><br>1° Quique 9 (récord absoluto) · 2° Gonza 5 · 3° Willy/Faby/Augusto 4 c/u · 4° Luis 3<br>La escalera vale 5 pts de bonus — NO cuenta como KO'},
   {t:['noche perfecta','perfecto','3 de 3','tres torneos'],r:'⭐ <b>Noches perfectas (3/3) — solo 4 en 65 meses:</b><br>• Riby Feb21 — 34 pts ✓ ganó el mes<br>• Faby Mar25 — 43 pts ✓ ganó el mes<br>• Augusto Abr25 — 40,5 pts ✗ Quique ganó igual<br>• Ale Dic25 — 40 pts ✓ ganó el mes'},
@@ -808,7 +808,7 @@ const KB = [
   {t:['willy'],r:'♠ <b>Willy</b>: 19 títulos · 759 partidas · 115 victorias · 39 noches · 730 KOs · 0,96 KOs/partida · promedio 8,31 pts/torneo · eficiencia 82,5%. El campeón histórico — gana por posición, no por destrucción.'},
   {t:['quique'],r:'♠ <b>Quique</b>: 17 títulos · 757 partidas · 115 victorias · 45 noches · 787 KOs · 8 escaleras reales (récord). 45 noches ganadas = 45 veces 2° en noches. Nunca bajó del 41,2% del máximo mensual.'},
   {t:['augusto'],r:'♠ <b>Augusto</b>: 8 títulos (1 compartido ★Oct22) · 671 partidas · 101 victorias · 40 noches · 765 KOs · avg 1,14/p (mejor del torneo). 3 de los 5 campeonatos más dominantes son suyos.'},
-  {t:['faby'],r:'♠ <b>Faby</b>: 6 títulos (1 compartido ★Oct22) · 614 partidas · 84 victorias · 28 noches · 599 KOs. 9 subcampeonatos mensuales. Noche perfecta Mar 2025 (43 pts).'},
+  {t:['faby'],r:'♠ <b>Faby</b>: 6 títulos (1 compartido ★Oct22) · 614 partidas · 84 victorias · 28 noches · 599 KOs. 8 subcampeonatos mensuales. Noche perfecta Mar 2025 (43 pts).'},
   {t:['juanchi'],r:'♠ <b>Juanchi</b>: 3 títulos · 208 partidas · 37 victorias (17,8% — MEJOR histórico) · 11 noches · 245 KOs · avg 1,18/p. Mejor noche sin escalera: 45,5 pts (Oct 2024, 15 KOs).'},
   {t:['ale'],r:'♠ <b>Ale</b>: 3 títulos · 747 partidas · 75 victorias · 19 noches · 586 KOs. Récord de 4° puestos: 104 veces. Lidera mayo 2026 con 60,25 pts.'},
   {t:['fer'],r:'♠ <b>Fer</b>: 3 títulos · 714 partidas · 67 victorias · 20 noches · 485 KOs. 98 veces 5° (récord). 8 subcampeonatos mensuales. A 2 pts de ganar Abr 2026.'},
