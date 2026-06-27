@@ -186,7 +186,8 @@ body{font-family:'Montserrat',system-ui,sans-serif}
   background:repeating-conic-gradient(#7a1f1f 0deg 18deg,#c84040 18deg 36deg);
   box-shadow:0 0 0 2px rgba(0,0,0,.5),0 4px 12px rgba(0,0,0,.45);transition:transform .3s}
 .jcard:hover .pchip,.jcard:active .pchip{transform:scale(1.05) rotate(4deg)}
-.pchip.gold{background:repeating-conic-gradient(#1e3d1e 0deg 18deg,var(--do) 18deg 36deg)}
+.pchip.gold{background:conic-gradient(from 130deg,#9c7b1e,#ecd06a,#fff6cf,#d8af33,#a07f20,#ecd06a,#fff6cf,#d8af33,#9c7b1e)}
+.pchip.silver{background:conic-gradient(from 130deg,#8a8a8a,#d8d8d8,#ffffff,#b2b2b2,#909090,#d8d8d8,#ffffff,#b2b2b2,#8a8a8a)}
 .pchip.blue{background:repeating-conic-gradient(#16345a 0deg 18deg,#3878c8 18deg 36deg)}
 .pchip::before{content:'';position:absolute;inset:5px;border-radius:50%;border:2px dashed rgba(255,255,255,.35);z-index:3;pointer-events:none}
 .pface{position:absolute;inset:9px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a2c1a,#0a160a);font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--dl)}
@@ -196,7 +197,8 @@ body{font-family:'Montserrat',system-ui,sans-serif}
 .mchip{position:relative;display:inline-block;flex-shrink:0;border-radius:50%;vertical-align:middle;
   background:repeating-conic-gradient(#7a1f1f 0deg 18deg,#c84040 18deg 36deg);
   box-shadow:0 0 0 1.5px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.4)}
-.mchip.gold{background:repeating-conic-gradient(#1e3d1e 0deg 18deg,var(--do) 18deg 36deg)}
+.mchip.gold{background:conic-gradient(from 130deg,#9c7b1e,#ecd06a,#fff6cf,#d8af33,#a07f20,#ecd06a,#fff6cf,#d8af33,#9c7b1e)}
+.mchip.silver{background:conic-gradient(from 130deg,#8a8a8a,#d8d8d8,#ffffff,#b2b2b2,#909090,#d8d8d8,#ffffff,#b2b2b2,#8a8a8a)}
 .mchip.blue{background:repeating-conic-gradient(#16345a 0deg 18deg,#3878c8 18deg 36deg)}
 .mchip::before{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.35);z-index:3;pointer-events:none}
 .mface{position:absolute;inset:4px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a2c1a,#0a160a);font-family:'Bebas Neue',sans-serif;color:var(--dl)}
@@ -217,7 +219,8 @@ body{font-family:'Montserrat',system-ui,sans-serif}
 @keyframes fmboxin{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
 .fmx{position:absolute;top:8px;right:12px;background:none;border:none;color:var(--gr);font-size:20px;cursor:pointer;line-height:1}
 .bigchip{width:150px;height:150px;border-radius:50%;position:relative;margin:6px auto 14px;flex-shrink:0;background:repeating-conic-gradient(#7a1f1f 0deg 18deg,#c84040 18deg 36deg);box-shadow:0 0 0 3px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.5);animation:lcfloat 3.6s ease-in-out infinite}
-.bigchip.gold{background:repeating-conic-gradient(#1e3d1e 0deg 18deg,var(--do) 18deg 36deg)}
+.bigchip.gold{background:conic-gradient(from 130deg,#9c7b1e,#ecd06a,#fff6cf,#d8af33,#a07f20,#ecd06a,#fff6cf,#d8af33,#9c7b1e)}
+.bigchip.silver{background:conic-gradient(from 130deg,#8a8a8a,#d8d8d8,#ffffff,#b2b2b2,#909090,#d8d8d8,#ffffff,#b2b2b2,#8a8a8a)}
 .bigchip.blue{background:repeating-conic-gradient(#16345a 0deg 18deg,#3878c8 18deg 36deg)}
 .bigchip::before{content:'';position:absolute;inset:9px;border-radius:50%;border:3px dashed rgba(255,255,255,.4);z-index:3;pointer-events:none}
 .bigface{position:absolute;inset:14px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a2c1a,#0a160a);font-family:'Bebas Neue',sans-serif;color:var(--dl)}
@@ -261,7 +264,51 @@ body{font-family:'Montserrat',system-ui,sans-serif}
 .hdr-top .nb-search svg{display:block}
 .nav{margin-bottom:10px}
 .nav .nb{flex:1 1 0;min-width:0;font-size:clamp(11px,3.3vw,15px);letter-spacing:.2px;padding:9px 2px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* === Features: cara a cara, verdugometro, carrera, logros, placa === */
+.h2hsel{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.h2hsel select{flex:1;min-width:0;background:var(--v2);color:var(--bl);border:1px solid var(--vb);border-radius:8px;padding:8px;font-family:'Montserrat';font-size:13px}
+.h2hsel span{color:var(--do);font-family:'Bebas Neue';font-size:16px}
+.h2hhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.h2hhead>div{display:flex;align-items:center;gap:8px}
+.h2hn{font-family:'Bebas Neue';font-size:18px;color:var(--do);letter-spacing:.5px}
+.h2hvs{font-family:'Bebas Neue';color:var(--gr);font-size:16px}
+.h2ht{width:100%;border-collapse:collapse}
+.h2ht td{padding:6px 4px;font-size:13px;text-align:center;border-bottom:1px solid rgba(30,61,30,.4);color:#cfd8cf}
+.h2ht td.h2hl{color:var(--gr);font-size:10px;text-transform:uppercase;letter-spacing:.5px;width:40%}
+.h2ht td.win{color:var(--dl);font-weight:700;font-family:'Bebas Neue';font-size:17px}
+.h2hfoot{margin-top:8px;font-size:11px;color:var(--gr);text-align:center;line-height:1.5}
+.vdsel{width:100%;background:var(--v2);color:var(--bl);border:1px solid var(--vb);border-radius:8px;padding:8px;font-family:'Montserrat';font-size:13px;margin-bottom:10px}
+.vdh{font-size:11px;font-weight:700;color:var(--do);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.vdh span{color:var(--gr);font-weight:400;text-transform:none;letter-spacing:0;font-size:10px}
+.vdrow{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.vdn{width:64px;font-size:12px;font-weight:700;flex-shrink:0}
+.vdbar{flex:1;height:14px;background:var(--v2);border-radius:7px;overflow:hidden}
+.vdfill{height:100%;border-radius:7px;transition:width .6s}
+.vdfill.bad{background:linear-gradient(90deg,#7a1f1f,#c84040)}
+.vdfill.good{background:linear-gradient(90deg,#1f6a1f,#2d9a2d)}
+.vdv{width:22px;text-align:right;font-family:'Bebas Neue';color:var(--do);font-size:15px}
+.vdempty{color:var(--gr);font-size:12px}
+.crow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.cpos{width:16px;font-family:'Bebas Neue';color:var(--do);font-size:15px;text-align:center}
+.cmid{flex:1;min-width:0}
+.cnm{font-size:12px;font-weight:700;margin-bottom:3px;display:flex;gap:6px;align-items:center}
+.cgl{font-size:9px;color:#08120a;background:var(--do);padding:1px 5px;border-radius:3px;font-weight:800}
+.cgd{font-size:10px;color:var(--rs)}
+.cbar{height:10px;background:var(--v2);border-radius:5px;overflow:hidden}
+.cfill{height:100%;background:linear-gradient(90deg,#2d6a2d,#7a9a7a);border-radius:5px;transition:width .8s}
+.cfill.lead{background:linear-gradient(90deg,var(--dd),var(--dl))}
+.cpts{font-family:'Bebas Neue';color:var(--do);font-size:16px;width:42px;text-align:right}
+.lgbox{display:flex;flex-wrap:wrap;gap:6px}
+.lgchip{font-size:11px;background:rgba(200,164,0,.1);border:1px solid rgba(200,164,0,.3);color:var(--dl);border-radius:20px;padding:4px 9px;font-weight:600}
+.lgwrap{margin-top:10px}
+.fmlogros{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.fmshare{margin-top:8px;width:100%;background:rgba(45,106,45,.25);color:var(--dl);border:1px solid var(--va);border-radius:10px;padding:11px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.5px;cursor:pointer}
+.fmshare:active{transform:scale(.98)}
+.placa-wrap{position:fixed;left:-9999px;top:0}
+.placa{width:360px;background:linear-gradient(165deg,#0f240f,#061006);padding:26px 22px;font-family:'Montserrat',sans-serif;color:#f0f4f0;border:2px solid #2d6a2d}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -305,6 +352,15 @@ body{font-family:'Montserrat',system-ui,sans-serif}
 <!-- ══ JUGADORES ══ -->
 <div id="sc-jugadores" class="sc">
   <input class="srch" type="text" placeholder="🔍 Buscar jugador..." id="srch-jug" oninput="filtrarJug()" style="margin-top:12px">
+  <div class="card" style="margin-top:12px">
+    <div class="stitle">⚔️ Cara a cara</div>
+    <div class="h2hsel">
+      <select id="h2h-a" onchange="renderH2H()"></select>
+      <span>VS</span>
+      <select id="h2h-b" onchange="renderH2H()"></select>
+    </div>
+    <div id="h2h-res"></div>
+  </div>
   <div id="lista-jugadores"></div>
 </div>
 
@@ -316,6 +372,11 @@ body{font-family:'Montserrat',system-ui,sans-serif}
 
 <!-- ══ RÉCORDS ══ -->
 <div id="sc-records" class="sc">
+  <div class="card" style="margin-top:12px">
+    <div class="stitle">💀 Verdugómetro</div>
+    <select id="verd-sel" class="vdsel" onchange="renderVerd()"></select>
+    <div id="verd-res"></div>
+  </div>
   <div id="records-content"></div>
 </div>
 
@@ -343,11 +404,13 @@ body{font-family:'Montserrat',system-ui,sans-serif}
     <div id="fm-name" class="fmname"></div>
     <div id="fm-nick" class="fmnick"></div>
     <div id="fm-stats" class="fmgrid"></div>
+    <div id="fm-logros" class="fmlogros"></div>
     <div class="rvbox"><div class="rvtit">⚔️ Rivalidades</div><div id="fm-riv"></div></div>
     <div class="fmbtns">
       <button id="fm-go" class="fmgo">Ver ficha completa →</button>
       <button class="fmcerrar" onclick="closeFicha()">Cerrar</button>
     </div>
+    <button class="fmshare" onclick="generarPlaca()">📸 Compartir placa</button>
   </div>
 </div>
 
@@ -391,9 +454,9 @@ function rivalBlock(nm){ const r=RIVALES[nm]; if(!r) return '';
   if(r.rival) h+=`<div class="rvrow"><span class="rvlbl">Rival de t\u00edtulo</span><span class="rvval">${r.rival[0]} \u00b7 ${r.rival[1]} definiciones 1-2</span></div>`;
   if(r.ajustada) h+=`<div class="rvrow"><span class="rvlbl">Def. m\u00e1s ajustada</span><span class="rvval">vs ${r.ajustada[0]} \u00b7 ${r.ajustada[1]} pts (${mn(r.ajustada[2])})</span></div>`;
   return h+'</div>'; }
-function openFicha(nm,ev){ if(ev) ev.stopPropagation();
+function openFicha(nm,ev){ if(ev) ev.stopPropagation(); _ficha=nm;
   const s=STATS[nm]||{}, info=JUGADORES_INFO[nm]||{}, r=RIVALES[nm]||{};
-  const tier=(s.titulos>=5)?'gold':((s.titulos>0)?'blue':'');
+  const tier=tierOf(nm);
   const f=FOTOS[nm]; const face=f?`<img src="${f}" alt="${nm}">`:(nm.charAt(0));
   const pctV=s.partidas>0?(s.victorias/s.partidas*100).toFixed(1):0;
   const ka=s.partidas>0?(s.kos/s.partidas).toFixed(2):0;
@@ -413,12 +476,21 @@ function openFicha(nm,ev){ if(ev) ev.stopPropagation();
   if(r.rival) rh+=`<div class="rvrow"><span class="rvlbl">Rival de t\u00edtulo</span><span class="rvval">${r.rival[0]} (${r.rival[1]})</span></div>`;
   if(r.ajustada) rh+=`<div class="rvrow"><span class="rvlbl">Def. m\u00e1s ajustada</span><span class="rvval">vs ${r.ajustada[0]} \u00b7 ${r.ajustada[1]}pts</span></div>`;
   document.getElementById('fm-riv').innerHTML=rh;
+  document.getElementById('fm-logros').innerHTML=logrosHTML(nm);
   document.getElementById('fm-go').setAttribute('onclick',`closeFicha();goPlayer('${nm}')`);
   document.getElementById('ficha-modal').classList.add('open'); }
 function closeFicha(){ document.getElementById('ficha-modal').classList.remove('open'); }
+let _top3camp=null;
+function tierOf(nm){
+  if(!_top3camp){ _top3camp = Object.entries(STATS).filter(function(e){return (e[1].titulos||0)>0;}).sort(function(a,b){return b[1].titulos-a[1].titulos;}).slice(0,3).map(function(e){return e[0];}); }
+  const s=STATS[nm]||{};
+  if(_top3camp.indexOf(nm)>=0) return 'gold';
+  if((s.titulos||0)>0) return 'silver';
+  return 'red';
+}
 function miniChip(nm,sz){
   sz=sz||30; const st=STATS[nm]||{};
-  const tier=(st.titulos>=5)?'gold':((st.titulos>0)?'blue':'');
+  const tier=tierOf(nm);
   const f=FOTOS[nm];
   const face=f?`<img src="${f}" alt="${nm}">`:(nm.charAt(0));
   return `<span class="mchip ${tier}" onclick="openFicha('${nm}',event)" style="width:${sz}px;height:${sz}px;cursor:pointer"><span class="mface" style="font-size:${Math.round(sz*0.46)}px">${face}</span></span>`;
@@ -529,7 +601,7 @@ function renderJugadores(filtro='') {
     const ko_avg = s.partidas>0 ? (s.kos/s.partidas).toFixed(2) : 0;
     const barW = Math.round((s.titulos||0)/19*100);
     const _foto = FOTOS[nm];
-    const chipTier = (s.titulos>=5)?'gold':((s.titulos>0)?'blue':'');
+    const chipTier = tierOf(nm);
     const face = _foto ? `<img src="${_foto}" alt="${nm}">` : (nm.charAt(0));
     html += `<div class="jcard" onclick="toggleJug('${nm}')">
       <div class="jch">
@@ -569,7 +641,7 @@ function renderJugadores(filtro='') {
           <div class="jdstat"><div class="jdlbl">Escaleras reales</div><div class="jdval">${s.escaleras_reales||0}</div></div>
           <div class="jdstat"><div class="jdlbl">Top-3 individuales</div><div class="jdval">${s.top3_ind||0}</div></div>
         </div>
-        ${rivalBlock(nm)}
+        ${rivalBlock(nm)}${logros(nm).length?('<div class="lgwrap"><div class="rvtit">🏅 Logros</div>'+logrosHTML(nm)+'</div>'):''}
         ${info.nota ? `<div style="font-size:12px;color:var(--gr);margin-top:10px;line-height:1.5;padding:8px;background:var(--v0);border-radius:6px">💡 ${info.nota}</div>` : ''}
       </div>
     </div>`;
@@ -854,12 +926,93 @@ function consultar() {
     '🤔 No encontré eso específicamente. Probá con: nombre de jugador, <i>KOs, noches, 5° puesto, escalera, empate, promedio, récord, mayo 2026</i>';
 }
 
+const H2H = {"Garqui": {"Luis": 1, "Willy": 1, "Riby": 1, "Quique": 1, "Faby": 1, "Ale": 1, "Charly": 1, "Fer": 1}, "Luis": {"Willy": 12, "Riby": 13, "Quique": 7, "Faby": 23, "Ale": 17, "Charly": 28, "Fer": 24, "Gonza": 19, "Franco": 7, "Augusto": 20, "Enzo": 1, "Rodri": 2, "Martin": 3, "Santi": 9, "Juanchi": 5, "Nacho": 1, "Mariano": 1}, "Willy": {"Riby": 45, "Quique": 37, "Faby": 46, "Ale": 46, "Charly": 49, "Fer": 48, "Luis": 50, "Augusto": 42, "Gonza": 28, "Franco": 7, "Enzo": 1, "Rodri": 3, "Martin": 5, "Juanchi": 18, "Santi": 20, "Nacho": 1, "Mariano": 1}, "Riby": {"Quique": 20, "Faby": 31, "Ale": 25, "Charly": 38, "Fer": 30, "Luis": 45, "Willy": 15, "Augusto": 25, "Gonza": 22, "Franco": 7, "Enzo": 1, "Rodri": 3, "Martin": 4, "Juanchi": 9, "Santi": 12, "Nacho": 1, "Mariano": 1}, "Quique": {"Faby": 45, "Ale": 45, "Charly": 50, "Fer": 48, "Willy": 29, "Riby": 40, "Luis": 55, "Augusto": 43, "Gonza": 29, "Franco": 7, "Enzo": 1, "Rodri": 3, "Martin": 5, "Juanchi": 17, "Santi": 17, "Nacho": 1, "Mariano": 1}, "Faby": {"Ale": 30, "Charly": 41, "Fer": 33, "Luis": 36, "Willy": 17, "Augusto": 27, "Quique": 18, "Gonza": 22, "Riby": 27, "Franco": 6, "Enzo": 1, "Rodri": 3, "Martin": 1, "Santi": 9, "Juanchi": 9, "Nacho": 1, "Mariano": 1}, "Ale": {"Charly": 45, "Fer": 38, "Willy": 20, "Riby": 35, "Luis": 45, "Faby": 33, "Quique": 21, "Augusto": 35, "Gonza": 25, "Franco": 7, "Enzo": 1, "Rodri": 3, "Martin": 5, "Juanchi": 14, "Santi": 19, "Nacho": 1, "Mariano": 1}, "Charly": {"Fer": 14, "Ale": 7, "Augusto": 13, "Gonza": 14, "Luis": 22, "Franco": 5, "Faby": 10, "Riby": 9, "Willy": 3, "Quique": 2, "Enzo": 1, "Rodri": 1, "Martin": 2, "Santi": 2, "Juanchi": 2}, "Fer": {"Quique": 18, "Ale": 28, "Willy": 18, "Riby": 30, "Luis": 38, "Faby": 30, "Charly": 38, "Augusto": 29, "Gonza": 23, "Franco": 7, "Enzo": 1, "Rodri": 3, "Martin": 4, "Santi": 15, "Juanchi": 11, "Nacho": 1, "Mariano": 1}, "Augusto": {"Riby": 32, "Faby": 33, "Willy": 21, "Luis": 39, "Ale": 28, "Charly": 36, "Quique": 20, "Gonza": 21, "Fer": 34, "Franco": 7, "Enzo": 1, "Rodri": 4, "Martin": 3, "Juanchi": 14, "Santi": 15, "Nacho": 1, "Mariano": 1}, "Gonza": {"Luis": 13, "Augusto": 11, "Fer": 9, "Willy": 4, "Faby": 9, "Ale": 7, "Riby": 8, "Quique": 3, "Charly": 12, "Franco": 5, "Juanchi": 2, "Santi": 2, "Nacho": 1, "Mariano": 1}, "Franco": {"Gonza": 1, "Martin": 1, "Nacho": 1, "Mariano": 1}, "Rodri": {"Fer": 1, "Willy": 1, "Riby": 1, "Ale": 1, "Charly": 2, "Quique": 1, "Faby": 1, "Luis": 1}, "Martin": {"Charly": 1, "Rodri": 1, "Luis": 2, "Augusto": 2, "Faby": 3, "Riby": 1, "Fer": 1}, "Juanchi": {"Luis": 15, "Faby": 13, "Fer": 13, "Charly": 10, "Santi": 14, "Willy": 6, "Augusto": 10, "Gonza": 8, "Ale": 10, "Quique": 7, "Riby": 9, "Martin": 2, "Franco": 2, "Nacho": 1, "Mariano": 1, "Rodri": 1}, "Santi": {"Ale": 7, "Charly": 10, "Juanchi": 10, "Luis": 13, "Willy": 6, "Augusto": 11, "Faby": 15, "Fer": 11, "Gonza": 8, "Riby": 8, "Martin": 2, "Quique": 9, "Franco": 2, "Nacho": 1, "Mariano": 1, "Rodri": 1}, "Nacho": {"Mariano": 1}};
+const LEADERS = {"kos": "Quique", "noches": "Quique", "victorias": "Quique", "terceros": "Riby", "p4": "Ale", "p5": "Fer", "escaleras": "Quique", "subtitulos": "Quique"};
+const NOCHE_PERFECTA={Riby:1,Faby:1,Augusto:1,Ale:1};
+const FLAWLESS={Ale:1,Augusto:1,Faby:1};
+const PLAYERS_ALL = Object.keys(STATS).filter(function(n){return (STATS[n].partidas||0)>0;}).sort(function(a,b){return (STATS[b].titulos||0)-(STATS[a].titulos||0)||(STATS[b].partidas||0)-(STATS[a].partidas||0);});
+let _ficha=null;
+function logros(nm){
+  var s=STATS[nm]||{}, o=[];
+  if(tierOf(nm)==='gold') o.push(['👑','Top 3 histórico']);
+  if((s.titulos||0)>0) o.push(['🏆',(s.titulos)+(s.titulos_compartidos>0?'★':'')+' título'+(s.titulos>1?'s':'')]);
+  if(nm===LEADERS.kos) o.push(['💀','Más KOs de la historia']);
+  if(nm===LEADERS.noches) o.push(['🌙','Rey de las noches']);
+  if(nm===LEADERS.terceros) o.push(['🥉','Rey del bronce']);
+  if(nm===LEADERS.p4) o.push(['4️⃣','Rey del 4° puesto']);
+  if(nm===LEADERS.p5) o.push(['5️⃣','Rey del 5° puesto']);
+  if(nm===LEADERS.subtitulos) o.push(['🥈','Rey del subcampeonato']);
+  if((s.escaleras_reales||0)>0) o.push(['♦️',s.escaleras_reales+' escalera'+(s.escaleras_reales>1?'s':'')+' real'+(s.escaleras_reales>1?'es':'')]);
+  if(NOCHE_PERFECTA[nm]) o.push(['⭐','Noche perfecta 3/3']);
+  if(FLAWLESS[nm]) o.push(['💥','Flawless Victory']);
+  if((s.partidas||0)>50){var pv=s.victorias/s.partidas*100; if(pv>=16) o.push(['🎯','Francotirador '+pv.toFixed(1)+'%']);}
+  if(nm==='Luis') o.push(['⏳','Sin repetir desde 2020']);
+  if(nm==='Garqui') o.push(['💯','100% (1 mes, 1 título)']);
+  return o;
+}
+function logrosHTML(nm){var o=logros(nm); if(!o.length) return ''; return '<div class=\"lgbox\">'+o.map(function(l){return '<span class=\"lgchip\">'+l[0]+' '+l[1]+'</span>';}).join('')+'</div>';}
+function fillSel(id,def){var el=document.getElementById(id); if(!el) return; el.innerHTML=PLAYERS_ALL.map(function(n){return '<option>'+n+'</option>';}).join(''); if(def!=null && el.options.length>def) el.selectedIndex=def;}
+function renderH2H(){
+  var a=document.getElementById('h2h-a').value, b=document.getElementById('h2h-b').value;
+  var sa=STATS[a]||{}, sb=STATS[b]||{};
+  var pv=function(s){return (s.partidas||0)>0?(s.victorias/s.partidas*100).toFixed(1):'0';};
+  var ka=function(s){return (s.partidas||0)>0?(s.kos/s.partidas).toFixed(2):'0';};
+  var rows=[['Títulos',sa.titulos||0,sb.titulos||0],['Subcampeonatos',sa.subtitulos||0,sb.subtitulos||0],['Noches ganadas',sa.noches||0,sb.noches||0],['Victorias',sa.victorias||0,sb.victorias||0],['% Victorias',pv(sa),pv(sb)],['KOs totales',sa.kos||0,sb.kos||0],['KO promedio',ka(sa),ka(sb)],['Escaleras',sa.escaleras_reales||0,sb.escaleras_reales||0],['Mejor noche',sa.mejor_noche||0,sb.mejor_noche||0]];
+  var html='<div class=\"h2hhead\"><div>'+miniChip(a,34)+'<div class=\"h2hn\">'+a+'</div></div><div class=\"h2hvs\">VS</div><div><div class=\"h2hn\">'+b+'</div>'+miniChip(b,34)+'</div></div><table class=\"h2ht\">';
+  rows.forEach(function(r){var av=parseFloat(r[1]),bv=parseFloat(r[2]);html+='<tr><td class=\"'+(av>bv?'win':'')+'\">'+r[1]+'</td><td class=\"h2hl\">'+r[0]+'</td><td class=\"'+(bv>av?'win':'')+'\">'+r[2]+'</td></tr>';});
+  html+='</table>';
+  var ab=(H2H[a]&&H2H[a][b])||0, ba=(H2H[b]&&H2H[b][a])||0;
+  html+='<div class=\"h2hfoot\">En la tabla mensual: <b>'+a+'</b> arriba <b>'+ab+'</b> '+(ab===1?'vez':'veces')+' · <b>'+b+'</b> arriba <b>'+ba+'</b> '+(ba===1?'vez':'veces')+'</div>';
+  document.getElementById('h2h-res').innerHTML=html;
+}
+function renderVerd(){
+  var p=document.getElementById('verd-sel').value;
+  var verd=PLAYERS_ALL.map(function(x){return [x,(H2H[x]&&H2H[x][p])||0];}).filter(function(e){return e[1]>0;}).sort(function(a,b){return b[1]-a[1];}).slice(0,5);
+  var vict=PLAYERS_ALL.map(function(x){return [x,(H2H[p]&&H2H[p][x])||0];}).filter(function(e){return e[1]>0;}).sort(function(a,b){return b[1]-a[1];}).slice(0,5);
+  var mx=Math.max.apply(null,[1].concat(verd.map(function(e){return e[1];})).concat(vict.map(function(e){return e[1];})));
+  var bar=function(arr,cls){return arr.map(function(e){return '<div class=\"vdrow\"><span class=\"vdn\">'+e[0]+'</span><div class=\"vdbar\"><div class=\"vdfill '+cls+'\" style=\"width:'+Math.round(e[1]/mx*100)+'%\"></div></div><span class=\"vdv\">'+e[1]+'</span></div>';}).join('')||'<div class=\"vdempty\">—</div>';};
+  document.getElementById('verd-res').innerHTML='<div class=\"vdh\">💀 Sus verdugos <span>(lo superaron en el mes)</span></div>'+bar(verd,'bad')+'<div class=\"vdh\" style=\"margin-top:10px\">🎯 Sus víctimas <span>(los superó en el mes)</span></div>'+bar(vict,'good');
+}
+function renderCarrera(){
+  var mayo=MESES.find(function(m){return m.en_curso;})||MESES[MESES.length-1];
+  var t=(mayo&&mayo.tabla)||{}; var sp=Object.entries(t).sort(function(a,b){return b[1]-a[1];});
+  var c=document.getElementById('carrera'); if(!c) return; if(!sp.length){c.innerHTML='';return;}
+  var lead=sp[0][1]; var mEl=document.getElementById('carrera-mes'); if(mEl) mEl.textContent=mn(mayo.mes);
+  var h=''; sp.forEach(function(e,i){var nm=e[0],p=e[1],w=Math.round(p/lead*100);var gap=i===0?'<span class=\"cgl\">LÍDER</span>':'<span class=\"cgd\">−'+(lead-p).toFixed(2)+'</span>';h+='<div class=\"crow\"><span class=\"cpos\">'+(i+1)+'</span>'+miniChip(nm,26)+'<div class=\"cmid\"><div class=\"cnm\">'+nm+' '+gap+'</div><div class=\"cbar\"><div class=\"cfill'+(i===0?' lead':'')+'\" style=\"width:'+w+'%\"></div></div></div><span class=\"cpts\">'+p+'</span></div>';});
+  c.innerHTML=h;
+}
+function generarPlaca(){
+  var nm=_ficha; if(!nm) return;
+  if(typeof html2canvas==='undefined'){alert('Generador cargando, probá de nuevo en unos segundos.');return;}
+  var s=STATS[nm]||{}, info=JUGADORES_INFO[nm]||{}, tier=tierOf(nm);
+  var ringcol=tier==='gold'?'#d8af33':(tier==='silver'?'#cccccc':'#c84040');
+  var f=FOTOS[nm]; var face=f?'<img src=\"'+f+'\" style=\"width:100%;height:100%;object-fit:cover\">':nm.charAt(0);
+  var pv=(s.partidas||0)>0?(s.victorias/s.partidas*100).toFixed(1):'0';
+  var cell=function(l,v){return '<div style=\"background:#102610;border-radius:8px;padding:8px\"><div style=\"font-size:9px;color:#7a9a7a;text-transform:uppercase;letter-spacing:1px\">'+l+'</div><div style=\"font-family:Bebas Neue;font-size:21px;color:#e8c840\">'+v+'</div></div>';};
+  var lg=logros(nm).slice(0,4).map(function(l){return '<span style=\"font-size:11px;background:rgba(200,164,0,.12);border:1px solid rgba(200,164,0,.35);color:#e8c840;border-radius:20px;padding:3px 8px\">'+l[0]+' '+l[1]+'</span>';}).join(' ');
+  var wrap=document.createElement('div'); wrap.className='placa-wrap';
+  wrap.innerHTML='<div id=\"placa-cap\" class=\"placa\">'
+   +'<div style=\"text-align:center\"><div style=\"width:140px;height:140px;border-radius:50%;margin:0 auto 14px;background:'+ringcol+';position:relative;box-shadow:0 0 0 3px rgba(0,0,0,.4)\"><div style=\"position:absolute;inset:8px;border-radius:50%;border:3px dashed rgba(255,255,255,.45)\"></div><div style=\"position:absolute;inset:14px;border-radius:50%;overflow:hidden;background:#0a160a;display:flex;align-items:center;justify-content:center;font-family:Bebas Neue;font-size:56px;color:#e8c840\">'+face+'</div></div>'
+   +'<div style=\"font-family:Bebas Neue;font-size:34px;color:#c8a400;letter-spacing:1px;line-height:1\">'+nm+'</div>'
+   +'<div style=\"font-size:11px;color:#7a9a7a;margin-bottom:14px\">'+(info.nick||'')+'</div></div>'
+   +'<div style=\"display:grid;grid-template-columns:1fr 1fr;gap:8px\">'+cell('Títulos',(s.titulos||0)+(s.titulos_compartidos>0?'★':''))+cell('Noches ganadas',s.noches||0)+cell('Victorias',s.victorias||0)+cell('% Victorias',pv+'%')+cell('KOs',s.kos||0)+cell('Escaleras',s.escaleras_reales||0)+'</div>'
+   +(lg?'<div style=\"display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px\">'+lg+'</div>':'')
+   +'<div style=\"text-align:center;margin-top:16px;border-top:1px solid #2d6a2d;padding-top:10px\"><div style=\"font-family:Bebas Neue;font-size:18px;color:#c8a400;letter-spacing:1px\">BILLIE\'S HOLDEM POKER</div><div style=\"font-size:9px;color:#7a9a7a;letter-spacing:1px\">Sportivo Billinghurst · Est. 2020</div></div>'
+   +'</div>';
+  document.body.appendChild(wrap);
+  html2canvas(document.getElementById('placa-cap'),{backgroundColor:null,scale:2,useCORS:true}).then(function(canvas){
+    var a=document.createElement('a'); a.download='billies-'+nm+'.png'; a.href=canvas.toDataURL('image/png'); a.click();
+    document.body.removeChild(wrap);
+  }).catch(function(e){ if(wrap.parentNode) document.body.removeChild(wrap); alert('No se pudo generar la placa.'); });
+}
 // ══ INIT ══
 renderInicio();
 renderJugadores();
 renderHistorial();
 renderRecords();
 renderConsultar();
+fillSel('h2h-a',0); fillSel('h2h-b',1); renderH2H();
+fillSel('verd-sel',0); renderVerd();
 
 document.getElementById('q-input').addEventListener('keydown', e => {
   if(e.key==='Enter' && !e.shiftKey) { e.preventDefault(); consultar(); }
