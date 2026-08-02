@@ -753,6 +753,46 @@ function filtrarHist() {
 }
 
 // ══ RÉCORDS ══
+const _rankPlayers = ['Willy','Quique','Augusto','Faby','Juanchi','Ale','Riby','Fer','Gonza','Luis','Garqui','Santi','Charly'];
+const AVGEF = {Willy:['8,31','82,5%'],Quique:['8,31','82,2%'],Augusto:['7,04','69,3%'],Faby:['6,51','64,6%'],Juanchi:['6,48','64,1%'],Ale:['6,86','68,4%'],Riby:['6,61','66,6%'],Fer:['6,63','66,4%'],Gonza:['4,25','42,4%'],Luis:['5,45','54,5%'],Garqui:['-','-'],Santi:['5,97','58,8%'],Charly:['4,69','47,2%']};
+const _esN = v => (v||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const _avgN = a => (a==='-'? -1 : parseFloat(String(a).replace(',','.').replace('%','')));
+const _FRCOLS = [
+  {k:'nm',  lbl:'Jugador', al:'left', str:true, get:(nm,s)=>nm, disp:(nm,s)=>nm},
+  {k:'tit', lbl:'Tít.', get:(nm,s)=>(s.titulos||0), disp:(nm,s)=>(s.titulos_compartidos>0?((s.titulos||0)+'★'):(s.titulos||0))},
+  {k:'p',   lbl:'Partidas', get:(nm,s)=>(s.partidas||0), disp:(nm,s)=>(s.partidas||0)},
+  {k:'v',   lbl:'Vict.', get:(nm,s)=> nm==='Garqui'?-1:(s.victorias||0), disp:(nm,s)=> nm==='Garqui'?'-':(s.victorias||0)},
+  {k:'n',   lbl:'Noches', get:(nm,s)=> nm==='Garqui'?-1:(s.noches||0), disp:(nm,s)=> nm==='Garqui'?'-':(s.noches||0)},
+  {k:'k',   lbl:'KOs', get:(nm,s)=> nm==='Garqui'?-1:(s.kos||0), disp:(nm,s)=> nm==='Garqui'?'-':((s.kos||0)%1===0?String(s.kos):String(s.kos).replace('.',','))},
+  {k:'cont',lbl:'Contados', get:(nm,s)=>(s.puntos_totales||0), disp:(nm,s)=>_esN(s.puntos_totales)},
+  {k:'brut',lbl:'Brutos', get:(nm,s)=>(s.puntos_brutos||0), disp:(nm,s)=>_esN(s.puntos_brutos)},
+  {k:'avg', lbl:'Avg/T', get:(nm,s)=>_avgN((AVGEF[nm]||['-'])[0]), disp:(nm,s)=>(AVGEF[nm]||['-','-'])[0]},
+  {k:'ppp', lbl:'Pts/P', get:(nm,s)=> s.partidas?(s.puntos_totales/s.partidas):-1, disp:(nm,s)=> s.partidas?_esN(s.puntos_totales/s.partidas):'-'},
+  {k:'ef',  lbl:'Efic.', get:(nm,s)=>_avgN((AVGEF[nm]||['-','-'])[1]), disp:(nm,s)=>(AVGEF[nm]||['-','-'])[1]}
+];
+let _frCol='tit', _frDir=-1;
+function sortFR(k){ if(_frCol===k){ _frDir=-_frDir; } else { _frCol=k; _frDir=(k==='nm')?1:-1; } renderFullRank(); }
+function renderFullRank(){
+  const col=_FRCOLS.find(c=>c.k===_frCol)||_FRCOLS[1];
+  const rows=_rankPlayers.map(nm=>[nm,STATS[nm]||{}]);
+  rows.sort((a,b)=>{ const va=col.get(a[0],a[1]), vb=col.get(b[0],b[1]);
+    if(col.str){ return (va<vb?-1:va>vb?1:0)*_frDir; } return (va-vb)*_frDir; });
+  let t='<table style="width:100%;border-collapse:collapse;font-size:11px"><tr style="border-bottom:1px solid var(--vb)">';
+  _FRCOLS.forEach(c=>{ const act=_frCol===c.k; const arr=act?(_frDir<0?' ▾':' ▴'):'';
+    t+=`<th onclick="sortFR('${c.k}')" style="text-align:${c.al==='left'?'left':'center'};padding:6px 4px;${act?'color:var(--do);font-weight:800':'color:var(--gr);font-weight:600'};cursor:pointer;white-space:nowrap;user-select:none">${c.lbl}${arr}</th>`; });
+  t+='</tr>';
+  rows.forEach(([nm,s],i)=>{ const gold=i<3?'color:var(--do)':i<5?'color:var(--bl)':'color:var(--gr)';
+    t+='<tr style="border-bottom:1px solid rgba(30,61,30,.3)">';
+    _FRCOLS.forEach((c,ci)=>{ const d=c.disp(nm,s); let st;
+      if(ci===0){ st=`padding:7px 4px;font-weight:700;${gold}`; }
+      else if(c.k==='tit'){ st='text-align:center;padding:7px 4px;font-weight:700;color:var(--do)'; }
+      else { st=`text-align:center;padding:7px 4px;${_frCol===c.k?'color:var(--do);font-weight:700':''}`; }
+      t+=`<td style="${st}">${d}</td>`; });
+    t+='</tr>'; });
+  t+='</table>';
+  const el=document.getElementById('fullrank-table'); if(el) el.innerHTML=t;
+}
+
 function renderRecords() {
   const recs = [
     {icon:'🏆',lbl:'Más títulos mensuales',val:'Willy — 19 títulos',det:'en 67 meses · 28,4% de conversión · mejor eficiencia global 82,5%'},
@@ -791,6 +831,11 @@ function renderRecords() {
   ];
 
   let html = '';
+  // Ranking completo ARRIBA de todo, ordenable por columna
+  html += '<div class="card"><div class="stitle">Ranking completo de jugadores</div>';
+  html += '<div style="font-size:10px;color:var(--gr);margin-bottom:8px">👆 Tocá una columna para ordenar el ranking por ese dato</div>';
+  html += '<div id="fullrank-table" style="overflow-x:auto"></div>';
+  html += '</div>';
   // Top 3 en cards destacadas
   html += '<div style="margin-top:12px">';
   html += '<div class="sgrid">';
@@ -799,7 +844,6 @@ function renderRecords() {
   html += `<div class="sbox"><div class="slbl">Dominancia récord</div><div class="sval">+63,25</div><div class="ssub">Augusto · Oct 2025</div></div>`;
   html += `<div class="sbox"><div class="slbl">Mejor noche pura</div><div class="sval">45,5 pts</div><div class="ssub">Juanchi · Oct 2024</div></div>`;
   html += '</div>';
-
   html += '<div class="card">';
   html += '<div class="stitle">Todos los récords y curiosidades</div>';
   recs.forEach(r => {
@@ -814,51 +858,8 @@ function renderRecords() {
   });
   html += '</div></div>';
 
-  // Ranking completo
-  html += '<div class="card"><div class="stitle">Ranking completo de jugadores</div>';
-  const _rankOrder = ['Willy','Quique','Augusto','Faby','Juanchi','Ale','Riby','Fer','Gonza','Luis','Garqui','Santi','Charly'];
-  const AVGEF = {Willy:['8,31','82,5%'],Quique:['8,31','82,2%'],Augusto:['7,04','69,3%'],Faby:['6,51','64,6%'],Juanchi:['6,48','64,1%'],Ale:['6,86','68,4%'],Riby:['6,61','66,6%'],Fer:['6,63','66,4%'],Gonza:['4,25','42,4%'],Luis:['5,45','54,5%'],Garqui:['-','-'],Santi:['5,97','58,8%'],Charly:['4,69','47,2%']};
-  const _fmtK = v => (v%1===0? String(v): String(v).replace('.',','));
-  const fullRank = _rankOrder.map(nm => {
-    const s = STATS[nm] || {};
-    const tit = s.titulos_compartidos>0 ? (s.titulos+'★') : (s.titulos||0);
-    const ae = AVGEF[nm] || ['-','-'];
-    const isG = nm==='Garqui';
-    return [nm, {t:tit, p:s.partidas, v:isG?'-':s.victorias, n:isG?'-':s.noches, k:isG?'-':_fmtK(s.kos), avg:ae[0], ef:ae[1], ppp:(s.partidas?(s.puntos_totales/s.partidas).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2}):'-'), cont:(s.puntos_totales||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2}), brut:(s.puntos_brutos||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})}];
-  });
-  html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:11px">
-    <tr style="border-bottom:1px solid var(--vb)">
-      <th style="text-align:left;padding:6px 4px;color:var(--gr);font-weight:600">Jugador</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Tít.</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Partidas</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Vict.</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Noches</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">KOs</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Contados</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Brutos</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Avg/T</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Pts/P</th>
-      <th style="text-align:center;padding:6px 4px;color:var(--gr)">Efic.</th>
-    </tr>`;
-  fullRank.forEach(([nm,d],i) => {
-    const gold = i<3 ? 'color:var(--do)' : i<5 ? 'color:var(--bl)' : 'color:var(--gr)';
-    html += `<tr style="border-bottom:1px solid rgba(30,61,30,.3)">
-      <td style="padding:7px 4px;font-weight:700;${gold}">${nm}</td>
-      <td style="text-align:center;padding:7px 4px;font-weight:700;color:var(--do)">${d.t}</td>
-      <td style="text-align:center;padding:7px 4px;color:var(--gr)">${d.p}</td>
-      <td style="text-align:center;padding:7px 4px">${d.v}</td>
-      <td style="text-align:center;padding:7px 4px">${d.n}</td>
-      <td style="text-align:center;padding:7px 4px">${d.k}</td>
-      <td style="text-align:center;padding:7px 4px;color:var(--do)">${d.cont}</td>
-      <td style="text-align:center;padding:7px 4px;color:var(--gr)">${d.brut}</td>
-      <td style="text-align:center;padding:7px 4px;color:var(--do)">${d.avg}</td>
-      <td style="text-align:center;padding:7px 4px;color:var(--do)">${d.ppp}</td>
-      <td style="text-align:center;padding:7px 4px;color:var(--gr)">${d.ef}</td>
-    </tr>`;
-  });
-  html += '</table></div></div>';
-
   document.getElementById('records-content').innerHTML = html;
+  renderFullRank();
 }
 
 // ══ CONSULTAR ══
